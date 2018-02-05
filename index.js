@@ -17,5 +17,10 @@ var server = app.listen(process.env.PORT || 3000, () => {
 var io = socket(server);
 
 io.on('connection', (socket) => {
-	console.log('made socket connection');
+	console.log('Made socket connection' + socket.id);
+
+	socket.on('action', (data) => {
+		console.log(data);
+		io.sockets.emit('action', data);
+	});
 });
