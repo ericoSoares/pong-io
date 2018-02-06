@@ -1,6 +1,6 @@
 var playerConfig = {
 	size: 10,
-	radius: 2,
+	radius: 10,
 	color: ""
 };
 
