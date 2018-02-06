@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
 		id: socket.id,
 		xPos: 0,
 		yPos: 0,
-		team: "right"
+		team: "left"
 	};
 	players.push(player);
 
