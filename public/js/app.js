@@ -13,10 +13,6 @@ socket.on('update', (data) => {
 	updateCanvas(data);
 });
 
-socket.on('ballmove', (data) => {
-	updateCanvas(data);
-});
-
 function updateCanvas(data) {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for(var i = 0; i < data.players.length; i++) {
@@ -31,3 +27,6 @@ function updateCanvas(data) {
 	ctx.fill();
 }
 	
+window.onbeforeunload = function(e) {
+	socket.disconnect(0);
+};	
