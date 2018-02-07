@@ -1,4 +1,5 @@
 var pCfg = require('./playerConfig.js');
+var canvasCfg = require('./canvasConfig.js');
 
 ball = {
 	xPos: 400,
@@ -6,7 +7,7 @@ ball = {
 	xSpeed: 10,
 	ySpeed: 7,
 	radius: 10,
-	color: "red",
+	color: "black",
 	move: function() {
 		ball.xPos += ball.xSpeed;
 		ball.yPos += ball.ySpeed;
@@ -43,6 +44,21 @@ ball = {
 				}
 			}
 		}
+	},
+	checkScore: function() {
+		if(ball.xPos + ball.radius >= canvasCfg.width) 
+			return "left";
+		else if(ball.xPos - ball.radius <= 0)
+			return "right";
+		return "";
+	},
+	resetBall: function() {
+		ball.xPos = canvasCfg.width/2;
+		ball.yPos = canvasCfg.height/2;
+		ball.xSpeed = Math.random() * (10 - 5) + 5;
+		ball.ySpeed = Math.random() * (10 - 5) + 5;
+		ball.xSpeed *= (Math.random() >= 0.5) ? -1:1;
+		ball.ySpeed *= (Math.random() >= 0.5) ? -1:1;
 	}
 }
 

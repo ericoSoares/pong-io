@@ -15,12 +15,30 @@ socket.on('update', (data) => {
 
 function updateCanvas(data) {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawText(data);
+	drawPlayers(data);
+	drawBall(data);
+}
+
+function drawText(data) {
+	ctx.fillStyle = data.status.leftColor;
+	ctx.font = "bold 60px Monospace";
+	ctx.fillText(data.status.leftScore, (canvas.width / 2)-73, 58);
+	ctx.fillStyle = data.status.rightColor;
+	ctx.font = "bold 60px Monospace";
+	ctx.fillText(data.status.rightScore, (canvas.width / 2)+50, 58);
+}
+
+function drawPlayers(data) {
 	for(var i = 0; i < data.players.length; i++) {
 		ctx.beginPath();
-		ctx.arc(data.players[i].xPos,data.players[i].yPos,10,0,2*Math.PI)
-		ctx.fillStyle = "black";
+		ctx.arc(data.players[i].xPos,data.players[i].yPos,10,0,2*Math.PI);
+		ctx.fillStyle = data.players[i].color;
 		ctx.fill();
 	}
+}
+
+function drawBall(data) {
 	ctx.beginPath();
 	ctx.arc(data.ball.xPos,data.ball.yPos,10,0,2*Math.PI);
 	ctx.fillStyle = data.ball.color;

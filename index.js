@@ -1,6 +1,7 @@
 var express = require('express');
 var socket = require('socket.io');
 var ball = require('./config/ball.js');
+var gameCfg = require('./config/gameConfig.js');
 var app = express();
 
 app.use(express.static('public'));
@@ -14,13 +15,17 @@ var server = app.listen(process.env.PORT || 3000, () => {
 
 var io = socket(server);
 var players = [];
+var interval;
 io.on('connection', (socket) => {
 	console.log('Made socket connection' + socket.id);
+	if(interval) clearInterval(interval);
+	let randomTeam = (Math.random() >= 0.5) ? "left":"right";
 	var player = {
 		id: socket.id,
 		xPos: 0,
 		yPos: 0,
-		team: "left"
+		team: randomTeam,
+		color: (randomTeam == "left") ? gameCfg.leftColor : gameCfg.rightColor
 	};
 	players.push(player);
 
@@ -35,15 +40,35 @@ io.on('connection', (socket) => {
 					players[i].yPos = data.yPos;
 				}
 			}
-
 		}
-		io.sockets.emit('update', {players: players, ball: ball});
+		io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
 	});
 
-	var interval = setInterval(() => {
-		ball.move();
+	interval = setInterval(() => {
+		let goal = false;
+		switch(ball.checkScore()) {
+			case "left": 
+				gameCfg.leftScore++; 
+				ball.resetBall();
+				goal = true;
+				break;
+			case "right": 
+				gameCfg.rightScore++; 
+				ball.resetBall();
+				goal = true;
+				break;
+			default: break;
+		}
+		if(goal) {
+			clearInterval(interval);
+			setTimeout(() => {
+				ball.move();
+			}, 1000);
+		} else {
+			ball.move();
+		}
 		ball.checkHit(players);
-		io.sockets.emit('update', {players: players, ball: ball});
+		io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
 	}, 1000/60);
 
 	socket.on('disconnect', () => {
