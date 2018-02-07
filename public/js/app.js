@@ -23,10 +23,16 @@ function updateCanvas(data) {
 function drawText(data) {
 	ctx.fillStyle = data.status.leftColor;
 	ctx.font = "bold 60px Monospace";
-	ctx.fillText(data.status.leftScore, (canvas.width / 2)-73, 58);
+	ctx.fillText(data.status.leftScore, ((canvas.width)*0.25)-20, 58);
 	ctx.fillStyle = data.status.rightColor;
 	ctx.font = "bold 60px Monospace";
-	ctx.fillText(data.status.rightScore, (canvas.width / 2)+50, 58);
+	ctx.fillText(data.status.rightScore, ((canvas.width)*0.75)-20, 58);
+	var onlineStr = data.players.length + " player";
+	onlineStr += (data.players.length == 1) ? " online!" : "s online!";
+	ctx.fillStyle = "black";
+	ctx.font = "bold 20px Monospace";
+	ctx.fillText(onlineStr, 20, canvas.height-20);
+
 }
 
 function drawPlayers(data) {
@@ -40,7 +46,7 @@ function drawPlayers(data) {
 
 function drawBall(data) {
 	ctx.beginPath();
-	ctx.arc(data.ball.xPos,data.ball.yPos,10,0,2*Math.PI);
+	ctx.arc(data.ball.xPos,data.ball.yPos,data.ball.radius,0,2*Math.PI);
 	ctx.fillStyle = data.ball.color;
 	ctx.fill();
 }

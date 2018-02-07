@@ -1,6 +1,6 @@
 var canvas = {
-	height: 500,
-	width: 500
+	height: 600,
+	width: 900
 };
 
 module.exports = canvas;

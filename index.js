@@ -1,8 +1,9 @@
 var express = require('express');
-var socket = require('socket.io');
-var ball = require('./config/ball.js');
+var socket  = require('socket.io');
+var ball    = require('./config/ball.js');
 var gameCfg = require('./config/gameConfig.js');
-var app = express();
+var canvasCfg = require('./config/canvasConfig.js');
+var app     = express();
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -32,11 +33,12 @@ io.on('connection', (socket) => {
 	socket.on('action', (data) => {
 		for(var i = 0; i < players.length; i++) {
 			if(players[i].id == player.id) {
+				let halfCanvas = canvasCfg.width/2;
 				if(players[i].team == "left") {
-					players[i].xPos = (data.xPos > 250)?250:data.xPos;
+					players[i].xPos = (data.xPos > halfCanvas)?halfCanvas:data.xPos;
 					players[i].yPos = data.yPos;
 				} else {
-					players[i].xPos = (data.xPos < 250)?250:data.xPos;
+					players[i].xPos = (data.xPos < halfCanvas)?halfCanvas:data.xPos;
 					players[i].yPos = data.yPos;
 				}
 			}
@@ -59,14 +61,11 @@ io.on('connection', (socket) => {
 				break;
 			default: break;
 		}
-		if(goal) {
-			clearInterval(interval);
-			setTimeout(() => {
-				ball.move();
-			}, 1000);
-		} else {
-			ball.move();
+		if(gameCfg.checkEndMatch()) {
+			ball.resetBall();
+			gameCfg.resetScore();
 		}
+		ball.move();
 		ball.checkHit(players);
 		io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
 	}, 1000/60);

@@ -9,6 +9,9 @@ var gameConfig = {
 		gameConfig.leftScore = 0;
 		gameConfig.rightScore = 0;
 	},
+	checkEndMatch: function() {
+		return (gameConfig.leftScore >= 30 || gameConfig.rightScore >= 30);
+	}
 };
 
 module.exports = gameConfig;

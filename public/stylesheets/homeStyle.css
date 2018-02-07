@@ -1,3 +1,17 @@
+#container {
+	text-align: center;
+	margin-top: -25px;
+}
+
 canvas {
 	background-color: #e0e0e0;
+	cursor: none;
+}
+
+h1 {
+	font-size: 80px;
+	font-family: monospace;
+	letter-spacing: 5px;
+	text-align: center;
+	margin-top: -3px;
 }
