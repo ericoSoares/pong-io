@@ -1,5 +1,5 @@
 var canvas = {
-	height: 600,
+	height: 660,
 	width: 900
 };
 

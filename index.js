@@ -18,7 +18,7 @@ var io = socket(server);
 var players = [];
 var interval;
 io.on('connection', (socket) => {
-	console.log('Made socket connection' + socket.id);
+	console.log('Made socket connection ' + socket.id);
 	if(interval) clearInterval(interval);
 	let randomTeam = (Math.random() >= 0.5) ? "left":"right";
 	var player = {
@@ -35,10 +35,10 @@ io.on('connection', (socket) => {
 			if(players[i].id == player.id) {
 				let halfCanvas = canvasCfg.width/2;
 				if(players[i].team == "left") {
-					players[i].xPos = (data.xPos > halfCanvas)?halfCanvas:data.xPos;
+					players[i].xPos = (data.xPos > halfCanvas-15)?halfCanvas-15:data.xPos;
 					players[i].yPos = data.yPos;
 				} else {
-					players[i].xPos = (data.xPos < halfCanvas)?halfCanvas:data.xPos;
+					players[i].xPos = (data.xPos < halfCanvas+15)?halfCanvas+15:data.xPos;
 					players[i].yPos = data.yPos;
 				}
 			}
@@ -47,17 +47,14 @@ io.on('connection', (socket) => {
 	});
 
 	interval = setInterval(() => {
-		let goal = false;
 		switch(ball.checkScore()) {
 			case "left": 
 				gameCfg.leftScore++; 
 				ball.resetBall();
-				goal = true;
 				break;
 			case "right": 
 				gameCfg.rightScore++; 
 				ball.resetBall();
-				goal = true;
 				break;
 			default: break;
 		}

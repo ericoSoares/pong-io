@@ -26,8 +26,8 @@ ball = {
 			if(dist < pCfg.radius + ball.radius) {
 				if(ball.combo < 20) {
 					ball.combo++;
-					ball.xSpeed += 1;
-					ball.ySpeed += 1;
+					ball.xSpeed += (ball.xSpeed > 0) ? 2:-2;
+					ball.ySpeed += (ball.ySpeed > 0) ? 2:-2;;
 				}
 				var angle = Math.atan2(dy,dx)*180/Math.PI;
 				if(angle <= 0 && angle >= -90) {
