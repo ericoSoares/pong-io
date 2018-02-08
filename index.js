@@ -31,30 +31,20 @@ io.on('connection', (socket) => {
 	players.push(player);
 
 	socket.on('action', (data) => {
-		for(var i = 0; i < players.length; i++) {
-			if(players[i].id == player.id) {
-				let halfCanvas = canvasCfg.width/2;
-				if(players[i].team == "left") {
-					players[i].xPos = (data.xPos > halfCanvas-15)?halfCanvas-15:data.xPos;
-					players[i].yPos = data.yPos;
-				} else {
-					players[i].xPos = (data.xPos < halfCanvas+15)?halfCanvas+15:data.xPos;
-					players[i].yPos = data.yPos;
-				}
-			}
-		}
+		gameCfg.moveInbound(data, players, player);
 		io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
 	});
 
 	interval = setInterval(() => {
+		ball.strandedBall();
 		switch(ball.checkScore()) {
 			case "left": 
 				gameCfg.leftScore++; 
-				ball.resetBall();
+				ball.resetBallScore("left");
 				break;
 			case "right": 
 				gameCfg.rightScore++; 
-				ball.resetBall();
+				ball.resetBallScore("right");
 				break;
 			default: break;
 		}

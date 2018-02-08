@@ -3,6 +3,15 @@ body {
 	color: white;
 }
 
+h1 {
+	font-size: 50px;
+	font-family: 'Press Start 2P', cursive;
+	letter-spacing: 5px;
+	text-align: center;
+	margin-top: -3px;
+	cursor: default;
+}
+
 #container {
 	text-align: center;
 	margin-top: -25px;
@@ -11,14 +20,6 @@ body {
 canvas {
 	background-color: black;
 	cursor: none;
-}
-
-h1 {
-	font-size: 50px;
-	font-family: 'Press Start 2P', cursive;
-	letter-spacing: 5px;
-	text-align: center;
-	margin-top: -3px;
 }
 
 #footer {

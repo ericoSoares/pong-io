@@ -60,10 +60,23 @@ ball = {
 	resetBall: function() {
 		ball.xPos = canvasCfg.width/2;
 		ball.yPos = canvasCfg.height/2;
-		ball.xSpeed = Math.random() * (10 - 5) + 5;
-		ball.ySpeed = Math.random() * (10 - 5) + 5;
+		ball.xSpeed = 2
+		ball.ySpeed = 2
 		ball.xSpeed *= (Math.random() >= 0.5) ? -1:1;
 		ball.ySpeed *= (Math.random() >= 0.5) ? -1:1;
+		ball.combo = 0;
+	},
+	resetBallScore(side) {
+		ball.xPos = canvasCfg.width/2;
+		ball.yPos = canvasCfg.height/2;
+		ball.ySpeed = 0;
+		ball.xSpeed = (side == "left") ? -2 : 2;
+		ball.combo = 0;
+	},
+	strandedBall: function() {
+		if(ball.yPos+ball.radius < 0 || ball.yPos-ball.radius > canvasCfg.height) {
+			ball.resetBall();
+		}
 	}
 }
 
