@@ -19,18 +19,19 @@ function updateCanvas(data) {
 	drawText(data);
 	drawLines()
 	drawPlayers(data);
-	
 }
 
 function drawText(data) {
+	ctx.textAlign = "center"; 
 	ctx.fillStyle = data.status.leftColor;
 	ctx.font = "bold 60px Monospace";
-	ctx.fillText(data.status.leftScore, ((canvas.width)*0.25)-20, 70);
+	ctx.fillText(data.status.leftScore, ((canvas.width)*0.25), 70);
 	ctx.fillStyle = data.status.rightColor;
 	ctx.font = "bold 60px Monospace";
-	ctx.fillText(data.status.rightScore, ((canvas.width)*0.75)-20, 70);
+	ctx.fillText(data.status.rightScore, ((canvas.width)*0.75), 70);
 	var onlineStr = data.players.length + " player";
 	onlineStr += (data.players.length == 1) ? " online!" : "s online!";
+	ctx.textAlign = "start";
 	ctx.fillStyle = "white";
 	ctx.font = "bold 20px Monospace";
 	ctx.fillText(onlineStr, 20, canvas.height-20);
@@ -58,6 +59,11 @@ function drawPlayers(data) {
 		ctx.beginPath();
 		ctx.arc(data.players[i].xPos,data.players[i].yPos,10,0,2*Math.PI);
 		ctx.fill();
+		ctx.fillStyle = "white";
+		ctx.textAlign = "center";  
+		ctx.font = "bold 15px Monospace";
+		ctx.fillText(data.players[i].name, data.players[i].xPos, data.players[i].yPos-20);
+		ctx.textAlign = "start";
 	}
 }
 
@@ -68,6 +74,6 @@ function drawBall(data) {
 	ctx.fill();
 }
 	
-window.onbeforeunload = function(e) {
+/*window.onbeforeunload = function(e) {
 	socket.disconnect(0);
-};	
+};*/	
