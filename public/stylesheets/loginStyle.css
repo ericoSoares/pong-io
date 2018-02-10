@@ -1,0 +1,88 @@
+body {
+	background-color: black;
+	color: white;
+	
+}
+
+h1 {
+	font-size: 50px;
+	font-family: 'Press Start 2P', cursive;
+	letter-spacing: 5px;
+	text-align: center;
+	margin-top: 100px;
+	cursor: default;
+}
+
+#container {
+	text-align: center;
+	font-family: monospace;
+}
+
+input[type=text] {
+  width: 230px;
+	height: 34px;
+	border-radius: 10px;
+	font-size: 15px;
+	color: white;
+	background-color: black;
+  border-style: solid;
+  border-width: 3px;
+  outline: none;
+  text-align: center;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+}
+
+input[name=team] {
+  padding: 0;
+  position: relative;
+  top: -2px;
+  height: 40px;
+  width: 70px;
+	border-radius: 10px;
+	font-size: 11px;
+  background-color: black;
+	color: white;
+  border-style: solid;
+  border-width: 3px;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+}
+
+input[name=settings] {
+  margin-top: 10px;
+  height: 38px;
+  width: 314px;
+	border-radius: 10px;
+	font-size: 15px;
+  background-color: black;
+	color: white;
+  border-style: solid;
+  border-width: 3px;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+}
+
+input[type=submit] {
+  padding: 0;
+  margin-top: 10px;
+	height: 40px;
+  width: 314px;
+	border-radius: 10px;
+	font-size: 15px;
+	background-color: black;
+	color: white;
+  border-style: solid;
+  border-width: 3px;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+}
+
+input[name=team]:hover, input[name=settings]:hover, input[type=submit]:hover {
+  background-color: white;
+  color: black;
+  border-color: black;
+}
