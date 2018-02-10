@@ -69,10 +69,15 @@ io.sockets.on('connection', (socket) => {
 	}, 1000/60);
 
 	socket.on('disconnect', () => {
-		console.log(players.indexOf(socket.id));
-		players.splice(players.indexOf(player.id), 1);
+		let del;
+		for(var i = 0; i < players.length; i++) {
+			if(players[i].id == socket.id)
+				del = i;
+		}
+		console.log("Player of id" + del + " disconnected!");
+		players.splice(del, 1);
 		//clearInterval(interval);
-	  	console.log('User disconnected! '+socket.id);
+	  	
 	  	console.log(players);
 	});
 });
