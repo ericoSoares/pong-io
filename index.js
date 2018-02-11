@@ -6,7 +6,7 @@ var canvasCfg 		 = require('./config/canvasConfig.js');
 var bodyParser       = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var app     		 = express();
-var playerName 		 = "";
+var playerSettings;
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
 	res.render(__dirname + '/public/views/login');
 });
 app.post('/', urlencodedParser, (req, res) => {
-	playerName = req.body.username;
-	console.log(playerName);
+	playerSettings = req.body;
+	console.log(playerSettings);
 	res.render(__dirname + '/public/views/home');
 });
 
@@ -27,12 +27,13 @@ var server = app.listen(process.env.PORT || 3000, () => {
 var io = socket(server);
 var players = [];
 var interval;
+
 io.sockets.on('connection', (socket) => {
 	console.log('Made socket connection ' + socket.id);
 	if(interval) clearInterval(interval);
 	let randomTeam = (Math.random() >= 0.5) ? "left":"right";
 	var player = {
-		name: playerName,
+		name: playerSettings.username,
 		id: socket.id,
 		xPos: 0,
 		yPos: 0,
