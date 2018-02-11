@@ -11,11 +11,17 @@ h1 {
   text-align: center;
   margin-top: 100px;
   cursor: default;
+  user-select: none;
 }
 
 #container {
   text-align: center;
   font-family: monospace;
+}
+
+form {
+  width: 314px;
+  margin: auto;
 }
 
 input[type=text] {
@@ -65,6 +71,8 @@ input[name=settings] {
   outline: none;
   cursor: pointer;
   font-family: 'Press Start 2P', cursive;
+  margin-bottom: 10px;
+  border-color: white;
 }
 
 input[type=submit] {
@@ -87,4 +95,40 @@ input[name=teamButton]:hover, input[name=settings]:hover, input[type=submit]:hov
   background-color: white;
   color: black;
   border-color: black;
+}
+
+.hovered {
+  background-color: white !important;
+  color: black !important;
+  border-color: black !important;
+}
+
+ul {
+  list-style: none;
+  display: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+}
+
+li {
+  margin-left: -39px;
+  margin-bottom: 10px;
+}
+
+li:hover {
+  background-color: gray;
+}
+
+#footer {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  text-align: center;
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
 }

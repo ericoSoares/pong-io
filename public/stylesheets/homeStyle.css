@@ -27,4 +27,9 @@ canvas {
 	font-size: 10px;
 	text-align: center;
 	margin-top: 10px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
 }
