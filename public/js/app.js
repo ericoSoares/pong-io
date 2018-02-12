@@ -17,7 +17,7 @@ function updateCanvas(data) {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawBall(data);
 	drawText(data);
-	drawLines()
+	drawLines(data)
 	drawPlayers(data);
 }
 
@@ -32,13 +32,13 @@ function drawText(data) {
 	var onlineStr = data.players.length + " player";
 	onlineStr += (data.players.length == 1) ? " online!" : "s online!";
 	ctx.textAlign = "start";
-	ctx.fillStyle = "white";
+	ctx.fillStyle = (data.sets.theme == "dark") ? "white" : "black"; // altered line
 	ctx.font = "bold 20px Monospace";
 	ctx.fillText(onlineStr, 20, canvas.height-20);
 }
 
-function drawLines() {
-	ctx.fillStyle = "white";
+function drawLines(data) {
+	ctx.fillStyle = (data.sets.theme == "dark") ? "white" : "black"; // altered line
 	for(var i = 0; i < canvas.height; i+= 120) {
 		ctx.rect(canvas.width/2 - 5, i, 10, 60);
 		ctx.fill();
@@ -59,7 +59,7 @@ function drawPlayers(data) {
 		ctx.beginPath();
 		ctx.arc(data.players[i].xPos,data.players[i].yPos,10,0,2*Math.PI);
 		ctx.fill();
-		ctx.fillStyle = "white";
+		ctx.fillStyle = (data.sets.theme == "dark") ? "white" : "black"; // altered line
 		ctx.textAlign = "center";  
 		ctx.font = "bold 15px Monospace";
 		ctx.fillText(data.players[i].name, data.players[i].xPos, data.players[i].yPos-20);

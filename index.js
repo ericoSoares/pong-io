@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.post('/', urlencodedParser, (req, res) => {
 	playerSettings = req.body;
 	console.log(playerSettings);
-	res.render(__dirname + '/public/views/home');
+	res.render(__dirname + '/public/views/home', {theme: playerSettings});
 });
 
 var server = app.listen(process.env.PORT || 3000, () => {
@@ -37,14 +37,21 @@ io.sockets.on('connection', (socket) => {
 		id: socket.id,
 		xPos: 0,
 		yPos: 0,
-		team: randomTeam,
-		color: (randomTeam == "left") ? gameCfg.leftColor : gameCfg.rightColor
+		team: playerSettings.team,
+		theme: playerSettings.theme,
+		screenSize: playerSettings.screenSize,
+		displayNames: playerSettings.displayNames,
+		color: (playerSettings.team == "left") ? gameCfg.leftColor : gameCfg.rightColor
 	};
 	players.push(player);
 	console.log(players);
 	socket.on('action', (data) => {
 		gameCfg.moveInbound(data, players, player);
-		io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
+		for(var i in players) {
+			io.sockets.connected[players[i].id].emit('update', {players: players, ball: ball, status: gameCfg, sets: players[i]});
+			//socket.to(players[i].id).emit('update', {players: players, ball: ball, status: gameCfg});
+		}
+		//io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
 	});
 
 	interval = setInterval(() => {
@@ -66,7 +73,11 @@ io.sockets.on('connection', (socket) => {
 		}
 		ball.move();
 		ball.checkHit(players);
-		io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
+		for(var i in players) {
+			io.sockets.connected[players[i].id].emit('update', {players: players, ball: ball, status: gameCfg, sets: players[i]});
+			//socket.to(players[i].id).emit('update', {players: players, ball: ball, status: gameCfg});
+		}
+		//io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
 	}, 1000/60);
 
 	socket.on('disconnect', () => {
@@ -78,7 +89,5 @@ io.sockets.on('connection', (socket) => {
 		console.log("Player of id" + del + " disconnected!");
 		players.splice(del, 1);
 		//clearInterval(interval);
-	  	
-	  	console.log(players);
 	});
 });

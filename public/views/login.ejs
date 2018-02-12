@@ -12,23 +12,23 @@
 	<h1>PongIO</h1>
 	<div id="container">
 		<form action="/" method="post" accept-charset="utf-8">
-			<input type="text" name="username" placeholder="Your name" maxlength="10">
-	    <input type="button" name="teamButton" value="Right">
-	    <br>
-	    <input type="submit" name="join" value="Join">
-	    <br>
-      <div id="settingsContainer">
-        <input type="button" name="settings" value="Settings">
-        <ul id="settingsList">  
-          <li id="displayNames">Hide names</li>
-          <li id="theme">Theme: Dark</li>
-          <li id="screenSize">Screen size: Large</li>
-        </ul>
-      </div>
-      <input type="hidden" name="theme" value="dark">
-	    <input type="hidden" name="screenSize" value="large">
-	    <input type="hidden" name="displayNames" value="true">
-	    <input type="hidden" name="team" value="right">
+			<input type="text" name="username" placeholder="Your name" maxlength="10" required>
+		    <input type="button" name="teamButton" value="Right">
+		    <br>
+		    <input type="submit" name="join" value="Join">
+		    <br>
+	        <div id="settingsContainer">
+	        	<input type="button" name="settings" value="Settings">
+	        	<ul id="settingsList">  
+	          		<li id="displayNames">Hide names</li>
+	          		<li id="theme">Theme: Dark</li>
+	          		<li id="screenSize">Screen size: Large</li>
+	        	</ul>
+	        </div>
+	        <input type="hidden" name="theme" value="dark">
+		    <input type="hidden" name="screenSize" value="large">
+		    <input type="hidden" name="displayNames" value="true">
+		    <input type="hidden" name="team" value="right">
 		</form>
 	</div>
   <div id="footer">Made by <a href="https://github.com/ericoSoares" target="_blank">Erico Soares</a></div>

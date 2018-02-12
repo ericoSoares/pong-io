@@ -3,7 +3,12 @@
 <head>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/homeStyle.css">
+	<% if(theme.theme == "dark") { %>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/homeStyle.css">
+	<% } else { %>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/homeStyleLight.css">
+	<% } %>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 	<title>PongIO</title>
 </head>
