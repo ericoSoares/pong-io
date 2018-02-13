@@ -59,11 +59,13 @@ function drawPlayers(data) {
 		ctx.beginPath();
 		ctx.arc(data.players[i].xPos,data.players[i].yPos,10,0,2*Math.PI);
 		ctx.fill();
-		ctx.fillStyle = (data.sets.theme == "dark") ? "white" : "black"; // altered line
-		ctx.textAlign = "center";  
-		ctx.font = "bold 15px Monospace";
-		ctx.fillText(data.players[i].name, data.players[i].xPos, data.players[i].yPos-20);
-		ctx.textAlign = "start";
+		if(data.sets.displayNames == "true") {
+			ctx.fillStyle = (data.sets.theme == "dark") ? "white" : "black"; // altered line
+			ctx.textAlign = "center";  
+			ctx.font = "bold 15px Monospace";
+			ctx.fillText(data.players[i].name, data.players[i].xPos, data.players[i].yPos-20);
+			ctx.textAlign = "start";
+		}
 	}
 }
 

@@ -75,9 +75,7 @@ io.sockets.on('connection', (socket) => {
 		ball.checkHit(players);
 		for(var i in players) {
 			io.sockets.connected[players[i].id].emit('update', {players: players, ball: ball, status: gameCfg, sets: players[i]});
-			//socket.to(players[i].id).emit('update', {players: players, ball: ball, status: gameCfg});
 		}
-		//io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
 	}, 1000/60);
 
 	socket.on('disconnect', () => {
