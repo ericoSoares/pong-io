@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000');
+var socket = io.connect();
 var canvas = document.getElementById('board');
 var ctx    = canvas.getContext('2d');
 

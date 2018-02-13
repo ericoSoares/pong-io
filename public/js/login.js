@@ -24,10 +24,14 @@ $("input[name=settings]").click(() => {
 
 $("#theme").click(() => {
   var theme = $("#theme");
-  if(theme.text() == "Theme: Dark")
+  if(theme.text() == "Theme: Dark") {
     theme.text("Theme: Light");
-  else 
+    $('link[href="/stylesheets/loginStyle.css"]').attr('href','/stylesheets/loginStyleLight.css');
+  }
+  else {
     theme.text("Theme: Dark");
+    $('link[href="/stylesheets/loginStyleLight.css"]').attr('href','/stylesheets/loginStyle.css');
+  }
   $("input[name=theme]").val(theme.text().includes("Dark") ? "dark": "light");
 });
 

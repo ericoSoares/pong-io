@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.post('/', urlencodedParser, (req, res) => {
 	playerSettings = req.body;
 	console.log(playerSettings);
-	res.render(__dirname + '/public/views/home', {theme: playerSettings});
+	res.render(__dirname + '/public/views/home', {theme: playerSettings, size: canvasCfg});
 });
 
 var server = app.listen(process.env.PORT || 3000, () => {
