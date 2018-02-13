@@ -8,6 +8,7 @@ ball = {
 	ySpeed: 7,
 	radius: 10,
 	combo: 0,
+	comboBonus: 1,
 	color: "black",
 	move: function() {
 		ball.xPos += ball.xSpeed;
@@ -26,8 +27,8 @@ ball = {
 			if(dist < pCfg.radius + ball.radius) {
 				if(ball.combo < 20) {
 					ball.combo++;
-					ball.xSpeed += (ball.xSpeed > 0) ? 2:-2;
-					ball.ySpeed += (ball.ySpeed > 0) ? 2:-2;;
+					ball.xSpeed += (ball.xSpeed > 0) ? ball.comboBonus:-ball.comboBonus;
+					ball.ySpeed += (ball.ySpeed > 0) ? ball.comboBonus:-ball.comboBonus;;
 				}
 				var angle = Math.atan2(dy,dx)*180/Math.PI;
 				if(angle <= 0 && angle >= -90) {

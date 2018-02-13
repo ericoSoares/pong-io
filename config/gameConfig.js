@@ -1,4 +1,6 @@
 var canvasCfg = require('./canvasConfig.js');
+var ball = require('./ball.js');
+var plCfg = require('./playerConfig.js');
 
 var gameConfig = {
 	leftQnt: 0,

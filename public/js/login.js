@@ -45,11 +45,3 @@ $("#displayNames").click(() => {
     $("input[name=displayNames]").val("true");
   }
 });
-
-$("#screenSize").click(() => {
-  var sizes = ['small', 'medium', 'large'];
-  size = (size == 2) ? 0 : size+1;
-  $("input[name=screenSize]").val(sizes[size]);
-  $("#screenSize").text("Screen size: " + sizes[size][0].toUpperCase() + sizes[size].substring(1, sizes[size].length));
-});
- 

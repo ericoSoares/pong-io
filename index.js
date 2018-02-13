@@ -49,9 +49,7 @@ io.sockets.on('connection', (socket) => {
 		gameCfg.moveInbound(data, players, player);
 		for(var i in players) {
 			io.sockets.connected[players[i].id].emit('update', {players: players, ball: ball, status: gameCfg, sets: players[i]});
-			//socket.to(players[i].id).emit('update', {players: players, ball: ball, status: gameCfg});
 		}
-		//io.sockets.emit('update', {players: players, ball: ball, status: gameCfg});
 	});
 
 	interval = setInterval(() => {
