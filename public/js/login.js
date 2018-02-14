@@ -1,7 +1,7 @@
+//Settings slide (open or closed)
 var slide = false;
-var size = 2;
-var name = "";
 
+//Team button
 $("input[name=teamButton]").click(() => {
   if($("input[name=teamButton]").val() == "Right")
     $("input[name=teamButton]").val("Left");
@@ -10,6 +10,7 @@ $("input[name=teamButton]").click(() => {
   $("input[name=team]").val($("input[name=teamButton]").val().toLowerCase());
 });
 
+//Settings button
 $("input[name=settings]").click(() => {
   if(!slide) {
     $("#settingsList").slideDown(300);
@@ -22,6 +23,7 @@ $("input[name=settings]").click(() => {
   }
 }); 
 
+//Theme option in the settings
 $("#theme").click(() => {
   var theme = $("#theme");
   if(theme.text() == "Theme: Dark") {
@@ -35,6 +37,7 @@ $("#theme").click(() => {
   $("input[name=theme]").val(theme.text().includes("Dark") ? "dark": "light");
 });
 
+//Hide names option in the settings
 $("#displayNames").click(() => {
   var el = $("#displayNames");
   if($("i").length == 0) {
