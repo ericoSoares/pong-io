@@ -52,8 +52,8 @@ io.sockets.on('connection', (socket) => {
 	var player = {
 		name: playerSettings.username,
 		id: socket.id,
-		xPos: 0,
-		yPos: 0,
+		xPos: (playerSettings.team == "left") ? 300 : 900,
+		yPos: canvasCfg.height/2,
 		team: playerSettings.team,
 		theme: playerSettings.theme,
 		screenSize: playerSettings.screenSize,

@@ -1,8 +1,10 @@
 //Makes socket connection
 var socket = io.connect('/');
+
 //Gets the canvas and the canvas context
 var canvas = document.getElementById('board');
 var ctx    = canvas.getContext('2d');
+
 //When the player moves the mouse in the canvas, emit the x and y postion to the server
 $("#board").mousemove((ev) => {
 	socket.emit('action', {
